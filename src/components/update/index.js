@@ -1,0 +1,1 @@
+export { default as UpdateBaseSelfInfo } from './self.update'

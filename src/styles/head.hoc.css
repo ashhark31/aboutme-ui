@@ -1,0 +1,40 @@
+
+.head_hoc{
+    display: grid;
+    grid-template-rows: 50px 1fr;
+}
+
+.head_hoc .nav-tabs{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    column-gap: 30px;
+    font-weight: 500;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    background: rgb(79 70 229 / 1);
+}
+
+    @media screen and (max-width:600px){
+        .head_hoc .nav-tabs{
+            font-size: small;
+        }   
+    }
+
+    .head_hoc .nav-tabs div{
+        display: inline-flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    .head_hoc .nav-tabs div:hover{
+        font-weight: 600;
+    }
+
+.head_hoc .body-section{
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: calc(100vh - 150px);
+}

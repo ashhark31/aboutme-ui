@@ -1,0 +1,9 @@
+
+.body_form{
+    padding: 50px;
+}
+
+.required{
+    color: red;
+    font-size: 12px;
+}
