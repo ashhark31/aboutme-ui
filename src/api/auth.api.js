@@ -1,4 +1,4 @@
-import { resetTokenAuth, setReadApiData, setTokenAuth } from '../reducers';
+import { setReadApiData } from '../reducers';
 import axios from './axios'
 
 export const registerAuthInfoDetails = (regisInfoData,callback) => {
@@ -66,7 +66,7 @@ export const loginAuthInfoDetails = (loginInfoData,callback,dispatch) => {
         withCredentials: true,
     }).then(async (res) => {
         if(res?.data?.status === 200){
-            dispatch(setTokenAuth(true));
+            localStorage.setItem('token', res?.data?.token);
         }
         const status = await res?.data?.status;
         const message = await res?.data?.message;
@@ -85,7 +85,7 @@ export const logoutAuthInfoDetails = (callback,dispatch) => {
         url: '/v1/auth/logoutAuthInfoCtrl',
         withCredentials: true
     }).then(async (res) => {
-        dispatch(resetTokenAuth());
+        localStorage.removeItem('token');
         const status = await res?.data?.status;
         const message = await res?.data?.message;
         callback(status,message);
@@ -104,16 +104,16 @@ export const dashboardAuthInfoDetails = (callback,dispatch) => {
         withCredentials: true
     }).then(async (res) => {
         if(res?.data?.status === 200){
-            dispatch(setTokenAuth(true));
+            localStorage.setItem('token', true)
         } else {
-            dispatch(resetTokenAuth());
+            localStorage.removeItem('token');
         }
         const status = await res?.data?.status;
         const message = await res?.data?.message;
         callback(status,message);
     })
     .catch(err => {
-        dispatch(resetTokenAuth());
+        localStorage.removeItem('token');
         const status = err?.response?.data?.status;
         const message = err?.response?.data?.message;
         callback(status,message);

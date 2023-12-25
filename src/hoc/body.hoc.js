@@ -21,7 +21,7 @@ const BodyHOC = ({children}) => {
     const currentTriggeredSideMenu = getSideMenuRoute(useLocation().pathname);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const token = useSelector(state => state.authentication.isTokenAvailable);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         if(!token){

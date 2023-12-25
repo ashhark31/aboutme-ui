@@ -7,7 +7,7 @@ import { activateNotify, setNotify } from "../reducers";
 import { adminAuthPayload } from "../payload";
 
 const BodyRoute = () => {
-    const token = useSelector(state => state.authentication.isTokenAvailable);
+    const token = localStorage.getItem('token');
     const location = useLocation()?.pathname;
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,11 +21,12 @@ const BodyRoute = () => {
     }
 
     useEffect(() => {
-      adminAuthPayload(token,"dashboard",notifyResponse,dispatch)
-      if(!token){
-        navigate("/auth/login"); 
-      } else{
+      if(token){
         navigate("/self/base/create")
+      } else{
+        adminAuthPayload(token,"dashboard",notifyResponse,dispatch)
+        if(!token)  navigate("/auth/login"); 
+        else  navigate("/self/base/create")
       }
     }, [token]);
 

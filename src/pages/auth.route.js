@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 export default function LoginAuthPage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const token = useSelector(state => state.authentication.isTokenAvailable);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
       if(token){

@@ -1,7 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import { 
     addFormSlice, 
-    authSlice, 
     headHOCSlice, 
     notificationSlice, 
     readApiDataSlice, 
@@ -14,7 +13,6 @@ export default configureStore({
         readData: readDataSlice,
         notification: notificationSlice,
         readApiData: readApiDataSlice,
-        addForm: addFormSlice,
-        authentication: authSlice
+        addForm: addFormSlice
     }
 })
