@@ -60,6 +60,33 @@ const router = createBrowserRouter([
         ]
       },
       {
+        path: 'education',
+        element: <BodyRoute />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: 'create',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: 'read',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: 'update',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: 'delete',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          }
+        ]
+      },
+      {
         path: 'experience',
         element: <BodyRoute />,
         errorElement: <ErrorPage />,
@@ -285,14 +312,36 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/css_config',
+    path: '/config',
     element: <BodyRoute />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'default',
+        path: 'key',
         element: <BodyRoute />,
         errorElement: <ErrorPage />,
+        children: [
+          {
+            path: 'create',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: 'read',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: 'update',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: 'delete',
+            element: <BodyRoute />,
+            errorElement: <ErrorPage />
+          }
+        ]
       }
     ]
   },

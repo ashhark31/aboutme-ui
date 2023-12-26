@@ -19,11 +19,13 @@ export {
 } from './readApiData.reducer'
 
 export { 
+    incrEduCount,
     incrExpCount,
     incrProjCount,
     incrSkillsCount,
     incrAchvmntCount,
     incrCrtCount,
+    decrEduCount,
     decrExpCount,
     decrProjCount,
     decrSkillsCount,

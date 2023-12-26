@@ -3,8 +3,10 @@ import {
     deleteBaseInfoDetails, 
     deleteBlogInfoDetails, 
     deleteCrtInfoDetails, 
+    deleteEduInfoDetails, 
     deleteExpInfoDetails, 
     deleteIntroInfoDetails, 
+    deleteKeyInfoDetails, 
     deleteProjInfoDetails, 
     deleteSkillInfoDetails, 
     deleteTestiInfoDetails 
@@ -14,6 +16,8 @@ export const deleteSelfPayload = async (target,actionType,callback) => {
     let key = target.elements[0].value;
     if(actionType === "Base"){
         deleteBaseInfoDetails(key,callback);
+    } else if(actionType  === "Education"){
+        deleteEduInfoDetails(key,callback);
     } else if(actionType  === "Experience"){
         deleteExpInfoDetails(key,callback);
     } else if(actionType === "Projects"){
@@ -39,7 +43,10 @@ export const deleteDashboardPayload = async (target,actionType,callback) => {
 }
 
 export const deleteCssConfigPayload = async (target,actionType,callback) => {
-    // 
+    let key = target.elements[0].value;
+    if(actionType === "Key"){
+        deleteKeyInfoDetails(key,callback);
+    } 
 }
 
 export const deleteSettingPayload = async (target,actionType,callback) => {

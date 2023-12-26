@@ -1,5 +1,6 @@
 export { 
     default as DeleteBaseSelfInfo,
+    DeleteEduSelfInfo,
     DeleteExpSelfInfo,
     DeleteProjSelfInfo,
     DeleteSkillsSelfInfo,
@@ -12,6 +13,10 @@ export {
     DeleteTestiDashInfo,
     DeleteBlogDashInfo
 } from './dashboard.delete'
+
+export {
+    default as DeleteKeyConfigInfo
+} from './config.delete'
 
 export {
     default as DeleteProfileSettingInfo

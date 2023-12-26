@@ -1,5 +1,5 @@
 import { KeyInfoField } from '../hoc';
-import { ReadDashboardInfo, ReadSelfInfo, ReadSettingInfo } from './read';
+import { ReadConfigInfo, ReadDashboardInfo, ReadSelfInfo, ReadSettingInfo } from './read';
 import { UpdateBaseSelfInfo } from './update';
 
 import { 
@@ -7,8 +7,10 @@ import {
   CreateBaseSelfInfo, 
   CreateBlogDashInfo, 
   CreateCrtSelfInfo, 
+  CreateEducationSelfInfo, 
   CreateExperienceSelfInfo, 
   CreateIntroDashInfo, 
+  CreateKeyConfigInfo, 
   CreateProfileSettingInfo, 
   CreateProjectsSelfInfo,
   CreateSkillSelfInfo,
@@ -23,8 +25,10 @@ import {
   DeleteBaseSelfInfo, 
   DeleteBlogDashInfo, 
   DeleteCrtSelfInfo, 
+  DeleteEduSelfInfo, 
   DeleteExpSelfInfo, 
   DeleteIntroDashInfo, 
+  DeleteKeyConfigInfo, 
   DeleteProfileSettingInfo, 
   DeleteProjSelfInfo, 
   DeleteSkillsSelfInfo,
@@ -97,18 +101,22 @@ export default function DescriptionList ({ctrlKey}) {
                       {
                         typeof value === "object"
                         ?
-                          value.map((val) => {
-                            return (
-                              <div className="mt-6 border-t border-gray-100">
-                                <dl className="divide-y divide-gray-100">
-                                  <div key={val?.name} className="px-4 py-6 grid grid-cols-1 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">{val?.name}</dt>
-                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{val?.keywords.toString()}</dd>                                
-                                  </div>
-                                </dl>
-                              </div>
-                            );
-                          })
+                          section === "Key"
+                          ? 
+                            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{JSON.stringify(value)}</dd>
+                          :
+                            value.map((val) => {
+                              return (
+                                <div className="mt-6 border-t border-gray-100">
+                                  <dl className="divide-y divide-gray-100">
+                                    <div key={val?.name} className="px-4 py-6 grid grid-cols-1 sm:gap-4 sm:px-0">
+                                      <dt className="text-sm font-medium leading-6 text-gray-900">{val?.name}</dt>
+                                      <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{val?.keywords?.toString()}</dd>                                
+                                    </div>
+                                  </dl>
+                                </div>                                                           
+                              );
+                            })
                         :
                         key === "image"
                         ?
@@ -126,7 +134,7 @@ export default function DescriptionList ({ctrlKey}) {
                             </dl>
                           </div>
                         :
-                          <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{value.toString()}</dd>
+                          <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{value?.toString()}</dd>
                       }
                     </div>
                   : <></>
@@ -163,7 +171,30 @@ export const RenderSelfForm = ({section,actionType}) => {
         <KeyInfoField type={actionType}>
           <DeleteBaseSelfInfo />
         </KeyInfoField>
-    : section === "Experience"
+    : 
+    section === "Education"
+    ?
+      actionType === "Create"
+      ?
+        <CreateEducationSelfInfo type={actionType} />
+      : 
+      actionType === "Read"
+      ?
+        <KeyInfoField type={actionType}>
+          <ReadSelfInfo section={section} />
+        </KeyInfoField>
+      :
+      actionType === "Update"
+      ?
+        <KeyInfoField type={actionType}>
+          <CreateEducationSelfInfo type={actionType} />
+        </KeyInfoField>
+      : 
+        <KeyInfoField type={actionType}>
+          <DeleteEduSelfInfo />
+        </KeyInfoField>
+    : 
+    section === "Experience"
     ?
       actionType === "Create"
       ?
@@ -184,7 +215,8 @@ export const RenderSelfForm = ({section,actionType}) => {
         <KeyInfoField type={actionType}>
           <DeleteExpSelfInfo />
         </KeyInfoField>    
-    : section === "Projects"
+    : 
+    section === "Projects"
     ?
       actionType === "Create"
       ?
@@ -205,7 +237,8 @@ export const RenderSelfForm = ({section,actionType}) => {
         <KeyInfoField type={actionType}>
           <DeleteProjSelfInfo />
         </KeyInfoField>    
-    : section === "Skills"
+    : 
+    section === "Skills"
     ?
       actionType === "Create"
       ?
@@ -226,7 +259,8 @@ export const RenderSelfForm = ({section,actionType}) => {
         <KeyInfoField type={actionType}>
           <DeleteSkillsSelfInfo />
         </KeyInfoField>   
-    : section === "Achievements"
+    : 
+    section === "Achievements"
     ?
       actionType === "Create"
       ?
@@ -247,7 +281,8 @@ export const RenderSelfForm = ({section,actionType}) => {
         <KeyInfoField type={actionType}>
           <DeleteAchvmntSelfInfo />
         </KeyInfoField>
-    :  section === "Certifications"
+    :  
+    section === "Certifications"
     ?
       actionType === "Create"
       ?
@@ -343,6 +378,33 @@ export const RenderDashboardForm = ({section,actionType}) => {
   );
 }
 
+export const RenderConfigForm = ({section,actionType}) => {
+  return (
+    section === "Key"
+    ?
+      actionType === "Create"
+      ?
+        <CreateKeyConfigInfo type={actionType} />
+      : 
+      actionType === "Read"
+      ?
+        <KeyInfoField type={section}>
+          <ReadConfigInfo section={section} />
+        </KeyInfoField>
+      :
+      actionType === "Update"
+      ?
+        <KeyInfoField type={actionType}>
+          <CreateKeyConfigInfo type={actionType} />
+        </KeyInfoField>
+      :
+        <KeyInfoField type={actionType}>
+          <DeleteKeyConfigInfo />
+        </KeyInfoField>
+    : <></>
+  );
+}
+
 export const RenderSettingForm = ({section,actionType}) => {
   return (
     section === "Profile"
@@ -381,6 +443,10 @@ export const RenderForm = ({category,section,actionType}) => {
         category === "dashboard"
         ? <RenderDashboardForm section={section} actionType={actionType} />
         : 
+        category === "config"
+        ?
+          <RenderConfigForm section={section} actionType={actionType} />
+        :
         category === "setting"
         ? <RenderSettingForm section={section} actionType={actionType} />
         : <></>

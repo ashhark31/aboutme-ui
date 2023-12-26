@@ -4,8 +4,10 @@ import {
     createBaseInfoDetails, 
     createBlogInfoDetails, 
     createCrtInfoDetails, 
+    createEduInfoDetails, 
     createExpInfoDetails, 
     createIntroInfoDetails, 
+    createKeyInfoDetails, 
     createProjInfoDetails,
     createSkillInfoDetails,
     createTestiInfoDetails
@@ -27,6 +29,33 @@ export const createSelfPayload = async (target,actionType,callback) => {
             }
         }               
         createBaseInfoDetails(baseInfoCtrlDetails,callback);
+    }  else if(actionType  === "Education"){
+        let eduInfoCtrlDetails = [];
+        let objectDetails = {};
+        let split = 6;
+        for(let i=0; i<target.length; i++){
+            let key = target.elements[i].getAttribute("name");
+            if(key === "key"){
+                objectDetails[key] = Number(target.elements[i].value);
+            } else if(key === "currentlyPursuing"){
+                if(target.elements[i].checked){
+                    objectDetails[key] = true;
+                } else {
+                    objectDetails[key] = false;
+                }
+            } else if(target.elements[i].value !== "") {
+                objectDetails[key] = target.elements[i].value;
+            }           
+
+            if(i === split-1){
+                eduInfoCtrlDetails.push(objectDetails);
+                objectDetails = {};
+                split += 6;
+            }
+        }
+        
+        createEduInfoDetails(eduInfoCtrlDetails,callback);
+        
     } else if(actionType  === "Experience"){
         let expInfoCtrlDetails = [];
         let objectDetails = {};
@@ -36,7 +65,7 @@ export const createSelfPayload = async (target,actionType,callback) => {
             if(key === "key"){
                 objectDetails[key] = Number(target.elements[i].value);
             } else if(key === "currentlyWorking"){
-                if(target.elements[i].value === "on"){
+                if(target.elements[i].checked){
                     objectDetails[key] = true;
                 } else {
                     objectDetails[key] = false;
@@ -217,8 +246,21 @@ export const createDashboardPayload = async (target,actionType,callback) => {
     }
 }
 
-export const createCSSConfigPayload = () => {
-
+export const createCSSConfigPayload = (target,actionType,callback) => {
+    if(actionType === "Key"){
+        let keyInfoCtrlDetails = {};
+        for(let i=0; i< target.length; i++){
+            let key = target.elements[i].getAttribute("name");
+            if(key === "key"){
+                keyInfoCtrlDetails[key] = Number(target.elements[i].value);
+            } else if((key === "baseInfoCtrlKey" || key === "skillId") && target.elements[i].value !== ""){
+                keyInfoCtrlDetails[key] = Number(target.elements[i].value);
+            } else if(target.elements[i].value !== ""){
+                keyInfoCtrlDetails[key] = target.elements[i].value.split(",");
+            }
+        }   
+        createKeyInfoDetails(keyInfoCtrlDetails,callback);
+    }
 }
 
 export const createSettingPayload = () => {

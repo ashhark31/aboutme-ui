@@ -20,6 +20,26 @@ export const updateBaseInfoDetails = (key, baseInfoData,callback) => {
     })
 }
 
+export const updateEduInfoDetails = (key, eduInfoData,callback) => {
+    axios({
+        method: 'PUT',
+        url: `/v1/updateEduInfoCtrl/${key}`,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: eduInfoData
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
 export const updateExpInfoDetails = (key, expInfoData,callback) => {
     axios({
         method: 'PUT',
@@ -169,6 +189,27 @@ export const updateBlogInfoDetails = (key, blogInfoData,callback) => {
             'Content-Type': 'application/json',
         },
         data: blogInfoData
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
+
+export const updateKeyInfoDetails = (key, keyInfoData,callback) => {
+    axios({
+        method: 'PUT',
+        url: `/v1/updateKeyInfoCtrl/${key}`,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: keyInfoData
     }).then(async (res) => {
         const status = await res?.data?.status;
         const message = await res?.data?.message;

@@ -4,8 +4,10 @@ import {
     updateBaseInfoDetails, 
     updateBlogInfoDetails, 
     updateCrtInfoDetails, 
+    updateEduInfoDetails, 
     updateExpInfoDetails, 
     updateIntroInfoDetails, 
+    updateKeyInfoDetails, 
     updateProjInfoDetails,
     updateSkillInfoDetails,
     updateTestiInfoDetails
@@ -28,6 +30,24 @@ export const updateSelfPayload = async (target,actionType,callback) => {
             }
         }         
         updateBaseInfoDetails(baseInfoCtrlKey, baseInfoCtrlDetails,callback);
+
+    } else if(actionType  === "Education"){
+        let eduInfoCtrlKey = '';
+        let eduInfoCtrlDetails = {};
+        for(let i=0; i< target.length; i++){
+            let key = target.elements[i].getAttribute("name");
+            if(key === "key"){
+                eduInfoCtrlKey = target.elements[i].value;
+            } else if(key === "currentlyPursuing"){
+                if(target.elements[i].checked === "on"){
+                    eduInfoCtrlDetails[key] = true;
+                }
+            } else if(target.elements[i].value !== ""){
+                eduInfoCtrlDetails[key] = target.elements[i].value;
+            }
+        } 
+        
+        updateEduInfoDetails(eduInfoCtrlKey,eduInfoCtrlDetails,callback);
 
     } else if(actionType  === "Experience"){
         let expInfoCtrlKey = '';
@@ -196,7 +216,22 @@ export const updateDashboardPayload = async (target,actionType,callback) => {
 }
 
 export const updateCSSConfigPayload = async (target,actionType,callback) => {
-    // 
+    if(actionType === "Key"){
+        let keyInfoCtrlId = '';
+        let keyInfoCtrlDetails = {};
+        for(let i=0; i< target.length; i++){
+            let key = target.elements[i].getAttribute("name");
+            if(key === "key"){
+                keyInfoCtrlId = target.elements[i].value;
+            } else if((key === "baseInfoCtrlKey" || key === "skillId") && target.elements[i].value !== ""){
+                keyInfoCtrlDetails[key] = Number(target.elements[i].value);
+            } else if(target.elements[i].value !== ""){
+                keyInfoCtrlDetails[key] = target.elements[i].value.split(",");
+            }
+        }   
+        
+        updateKeyInfoDetails(keyInfoCtrlId,keyInfoCtrlDetails,callback);    
+    }
 }
 
 export const updateSettingPayload = async (target,actionType,callback) => {

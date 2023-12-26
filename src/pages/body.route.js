@@ -33,6 +33,8 @@ const BodyRoute = () => {
     useEffect(() => {
       if(location === '/self' || location === '/self/base')
         navigate("/self/base/create")
+      else if(location === '/self/education')
+        navigate("/self/education/create");
       else if(location === '/self/experience')
         navigate("/self/experience/create");
       else if(location === '/self/projects')
@@ -49,6 +51,8 @@ const BodyRoute = () => {
         navigate("/dashboard/testimonials/create")
       else if(location === '/dashboard/blog')
         navigate("/dashboard/blog/create")
+      else if(location === '/config' || location === '/config/key')
+        navigate("/config/key/create");
       else if(location === '/setting' || location === '/setting/profile')
         navigate("/setting/profile/read")
     }, [location]);

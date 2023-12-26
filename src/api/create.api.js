@@ -20,6 +20,26 @@ export const createBaseInfoDetails = (baseInfoData,callback) => {
     })
 }
 
+export const createEduInfoDetails = (eduInfoData,callback) => {
+    axios({
+        method: 'POST',
+        url: '/v1/createEduInfoCtrl',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: eduInfoData
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
 export const createExpInfoDetails = (expInfoData,callback) => {
     axios({
         method: 'POST',
@@ -169,6 +189,27 @@ export const createBlogInfoDetails = (blogInfoData,callback) => {
             'Content-Type': 'application/json',
         },
         data: blogInfoData
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
+
+export const createKeyInfoDetails = (keyInfoData,callback) => {
+    axios({
+        method: 'POST',
+        url: '/v1/createKeyInfoCtrl',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: keyInfoData
     }).then(async (res) => {
         const status = await res?.data?.status;
         const message = await res?.data?.message;

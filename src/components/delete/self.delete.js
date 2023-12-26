@@ -5,6 +5,12 @@ export default function DeleteBaseSelfInfo () {
   )
 }
 
+export function DeleteEduSelfInfo () {
+  return (
+    <></>
+  )
+}
+
 export function DeleteExpSelfInfo () {
   return (
     <></>

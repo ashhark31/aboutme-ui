@@ -1,5 +1,6 @@
 export { 
     default as CreateBaseSelfInfo, 
+    CreateEducationSelfInfo,
     CreateExperienceSelfInfo,
     CreateProjectsSelfInfo,
     CreateSkillSelfInfo,
@@ -12,6 +13,10 @@ export {
     CreateTestiDashInfo,
     CreateBlogDashInfo
 } from './dashboard.create'
+
+export {
+    default as CreateKeyConfigInfo
+} from './config.create'
 
 export {
     default as CreateProfileSettingInfo

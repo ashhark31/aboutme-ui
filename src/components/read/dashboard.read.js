@@ -5,6 +5,7 @@ import DescriptionList from "../common.method";
 
 let keys = {
     baseInfoCtrlKey: 0,
+    eduId: 0,
     empId: 0,
     projectId: 0,
     skillId: 0,
@@ -12,7 +13,8 @@ let keys = {
     certId: 0,
     introInfoCtrlKey: 0,
     testInfoCtrlKey: 0,
-    blogInfoCtrlKey: 0
+    blogInfoCtrlKey: 0,
+    configKey: 0
 }
 
 const ReadIntroDashInfo = ({readData}) => {

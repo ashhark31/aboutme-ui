@@ -16,6 +16,22 @@ export const deleteBaseInfoDetails = (baseInfoKey,callback) => {
     })
 }
 
+export const deleteEduInfoDetails = (eduInfoKey,callback) => {
+    axios({
+        method: 'DELETE',
+        url: `/v1/deleteEduInfoCtrl/${eduInfoKey}`
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
 export const deleteExpInfoDetails = (expInfoKey,callback) => {
     axios({
         method: 'DELETE',
@@ -133,6 +149,23 @@ export const deleteBlogInfoDetails = (blogInfoKey,callback) => {
     axios({
         method: 'DELETE',
         url: `/v1/deleteBlogInfoCtrl/${blogInfoKey}`
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
+
+export const deleteKeyInfoDetails = (keyInfoKey,callback) => {
+    axios({
+        method: 'DELETE',
+        url: `/v1/deleteKeyInfoCtrl/${keyInfoKey}`
     }).then(async (res) => {
         const status = await res?.data?.status;
         const message = await res?.data?.message;

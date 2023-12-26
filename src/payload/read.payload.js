@@ -3,8 +3,10 @@ import {
     retrieveBaseInfoDetails, 
     retrieveBlogInfoDetails, 
     retrieveCrtInfoDetails, 
+    retrieveEduInfoDetails, 
     retrieveExpInfoDetails, 
     retrieveIntroInfoDetails, 
+    retrieveKeyInfoDetails, 
     retrieveProjInfoDetails,
     retrieveSkillInfoDetails,
     retrieveTestiInfoDetails
@@ -19,6 +21,8 @@ export const readSelfPayload = async (target,actionType,callback,dispatch) => {
     
     if(actionType === "Base"){
         retrieveBaseInfoDetails(key,callback,dispatch);
+    } else if(actionType  === "Education"){
+        retrieveEduInfoDetails(key,callback,dispatch);
     } else if(actionType  === "Experience"){
         retrieveExpInfoDetails(key,callback,dispatch);
     } else if(actionType === "Projects"){
@@ -47,8 +51,15 @@ export const readDashboardPayload = (target,actionType,callback,dispatch) => {
     }
 }
 
-export const readCSSConfigPayload = () => {
-
+export const readCSSConfigPayload = (target,actionType,callback,dispatch) => {
+    let key = target.elements[0].value;
+    if(key === ''){
+        key = 'key'
+    }
+    
+    if(actionType === "Key"){
+        retrieveKeyInfoDetails(key,callback,dispatch);
+    }
 }
 
 export const readSettingPayload = (target,actionType,callback,dispatch) => {

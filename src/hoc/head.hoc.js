@@ -4,7 +4,7 @@ import '../styles/head.hoc.css'
 import {useDispatch} from 'react-redux'
 
 const HeadHOC = ({children}) => {
-  const nav_menus = ['Self', 'Dashboard', 'CSS_Config', 'Setting'];
+  const nav_menus = ['Self', 'Dashboard', 'Config', 'Setting'];
   const dispatch = useDispatch();
   return (
     <div className="head_hoc">

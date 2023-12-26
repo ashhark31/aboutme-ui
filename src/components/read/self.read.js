@@ -5,6 +5,7 @@ import Avatar from '@mui/material/Avatar';
 
 let keys = {
     baseInfoCtrlKey: 0,
+    eduId: 0,
     empId: 0,
     projectId: 0,
     skillId: 0,
@@ -12,7 +13,8 @@ let keys = {
     certId: 0,
     introInfoCtrlKey: 0,
     testInfoCtrlKey: 0,
-    blogInfoCtrlKey: 0
+    blogInfoCtrlKey: 0,
+    configKey: 0
 }
 
 const ReadBaseSelfInfo = ({readData}) => {
@@ -58,6 +60,47 @@ const ReadBaseSelfInfo = ({readData}) => {
                         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                             <p className="text-sm leading-6 text-gray-900">
                                 {data?.["headlineInfoCtrl"]}
+                            </p>
+                            <p className="mt-1 text-xs leading-5 text-gray-500">
+                                created at {data?.["createdAt"]}
+                            </p>
+                        </div>
+                    </li>
+                ))
+            }
+        </ul>
+    );
+}
+
+const ReadEduSelfInfo = ({readData}) => {
+    const dispatch = useDispatch();
+    const getPersonData = (key) => {
+        keys.eduId = key;
+        dispatch(setClickedDataKey(keys));
+    }
+    
+    return (
+        <ul role="list" className="mt-10 divide-y divide-gray-100">
+            {
+                readData?.map((data) => (
+                    <li 
+                        key={data?.["key"]} 
+                        onClick={() => getPersonData(data?.["key"])}
+                        className="cursor-pointer flex justify-between gap-x-6 py-5"
+                    >
+                        <div className="flex min-w-0 gap-x-4">
+                            <div className="min-w-0 flex-auto">
+                            <p className="text-sm font-semibold leading-6 text-gray-900">
+                                {data?.["key"]}
+                            </p>
+                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                {data?.['degreeName']}
+                            </p>
+                            </div>
+                        </div>
+                        <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                            <p className="text-sm leading-6 text-gray-900">
+                                {data?.["fieldOfStudy"]}
                             </p>
                             <p className="mt-1 text-xs leading-5 text-gray-500">
                                 created at {data?.["createdAt"]}
@@ -285,6 +328,17 @@ export default function ReadSelfInfo({section}) {
                 readData[0]?.key
                 ?
                     <ReadBaseSelfInfo readData={readData} />     
+                :   <></>
+            :
+            section === "Education"
+            ?
+                readDataKey?.eduId 
+                ? 
+                    <DescriptionList ctrlKey={readDataKey?.eduId} />
+                :  
+                readData[0]?.key
+                ?
+                    <ReadEduSelfInfo readData={readData} />     
                 :   <></>
             :   
             section === "Experience"

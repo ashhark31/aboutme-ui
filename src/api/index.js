@@ -1,5 +1,6 @@
 export { 
     createBaseInfoDetails,
+    createEduInfoDetails,
     createExpInfoDetails,
     createProjInfoDetails,
     createSkillInfoDetails,
@@ -7,11 +8,13 @@ export {
     createCrtInfoDetails,
     createIntroInfoDetails,
     createTestiInfoDetails,
-    createBlogInfoDetails
+    createBlogInfoDetails,
+    createKeyInfoDetails
  } from './create.api'
 
  export { 
     retrieveBaseInfoDetails,
+    retrieveEduInfoDetails,
     retrieveExpInfoDetails,
     retrieveProjInfoDetails,
     retrieveSkillInfoDetails,
@@ -19,11 +22,13 @@ export {
     retrieveCrtInfoDetails,
     retrieveIntroInfoDetails,
     retrieveTestiInfoDetails,
-    retrieveBlogInfoDetails
+    retrieveBlogInfoDetails,
+    retrieveKeyInfoDetails
 } from './read.api'
 
 export { 
     updateBaseInfoDetails,
+    updateEduInfoDetails,
     updateExpInfoDetails,
     updateProjInfoDetails,
     updateSkillInfoDetails,
@@ -31,11 +36,13 @@ export {
     updateCrtInfoDetails,
     updateIntroInfoDetails,
     updateTestiInfoDetails,
-    updateBlogInfoDetails  
+    updateBlogInfoDetails,
+    updateKeyInfoDetails  
 } from './update.api'
 
 export { 
     deleteBaseInfoDetails, 
+    deleteEduInfoDetails,
     deleteExpInfoDetails,
     deleteProjInfoDetails,
     deleteSkillInfoDetails,
@@ -43,5 +50,6 @@ export {
     deleteCrtInfoDetails,
     deleteIntroInfoDetails,
     deleteTestiInfoDetails,
-    deleteBlogInfoDetails 
+    deleteBlogInfoDetails,
+    deleteKeyInfoDetails 
 } from './delete.api'

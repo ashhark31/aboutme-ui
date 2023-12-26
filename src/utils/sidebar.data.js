@@ -1,8 +1,8 @@
 
 const sidemenus = {
-    'Self': ['Base', 'Experience', 'Projects', 'Skills', 'Achievements', 'Certifications'],
+    'Self': ['Base', 'Education', 'Experience', 'Projects', 'Skills', 'Achievements', 'Certifications'],
     'Dashboard': ['Intro', 'Testimonials', 'Blog'],
-    'CSS_Config': ['Default'],
+    'Config': ['Key'],
     'Setting': ['Profile', 'Change_Password', 'Logout']
 }
 

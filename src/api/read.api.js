@@ -3,6 +3,7 @@ import axios from './axios'
 
 let keys = {
     baseInfoCtrlKey: 0,
+    eduId: 0,
     empId: 0,
     projectId: 0,
     skillId: 0,
@@ -10,7 +11,8 @@ let keys = {
     certId: 0,
     introInfoCtrlKey: 0,
     testInfoCtrlKey: 0,
-    blogInfoCtrlKey: 0
+    blogInfoCtrlKey: 0,
+    configKey: 0
 }
 
 export const retrieveBaseInfoDetails = (baseInfoKey,callback,dispatch) => {
@@ -24,6 +26,30 @@ export const retrieveBaseInfoDetails = (baseInfoKey,callback,dispatch) => {
         if(!isNaN(baseInfoKey) || data?.length === 1){
             keys.baseInfoCtrlKey = data[0]?.key;
             dispatch(setClickedDataKey(keys));
+        } else {
+            dispatch(setClickedDataKey(0));
+        }
+        dispatch(setReadApiData(data));
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
+export const retrieveEduInfoDetails = (eduInfoKey,callback,dispatch) => {
+    axios({
+        method: 'GET',
+        url: `/v1/retrieveEduInfoCtrl/${eduInfoKey}`
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        const data = await res?.data?.data;
+        if(!isNaN(eduInfoKey) || data?.length === 1){
+            keys.eduId = data[0]?.key;
+            dispatch(setClickedDataKey(keys))
         } else {
             dispatch(setClickedDataKey(0));
         }
@@ -217,6 +243,31 @@ export const retrieveBlogInfoDetails = (blogInfoKey,callback,dispatch) => {
         if(!isNaN(blogInfoKey) || data?.length === 1){
             keys.blogInfoCtrlKey = data[0]?.key;
             dispatch(setClickedDataKey(keys))
+        } else {
+            dispatch(setClickedDataKey(0));
+        }
+        dispatch(setReadApiData(data));
+        callback(status,message);
+    })
+    .catch(err => {
+        const status = err?.response?.data?.status;
+        const message = err?.response?.data?.message;
+        callback(status,message);
+    })
+}
+
+
+export const retrieveKeyInfoDetails = (keyInfoKey,callback,dispatch) => {
+    axios({
+        method: 'GET',
+        url: `/v1/retrieveKeyInfoCtrl/${keyInfoKey}`
+    }).then(async (res) => {
+        const status = await res?.data?.status;
+        const message = await res?.data?.message;
+        const data = await res?.data?.data;
+        if(!isNaN(keyInfoKey) || data?.length === 1){
+            keys.configKey = data[0]?.key;
+            dispatch(setClickedDataKey(keys));
         } else {
             dispatch(setClickedDataKey(0));
         }

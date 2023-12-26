@@ -41,7 +41,9 @@ const getActionTitle = (pathname) => {
 }
 
 const formCount = (count,section) => {
-  if(section === "Experience"){
+  if(section === "Education"){
+    return count?.educationCount
+  } else if(section === "Experience"){
     return count?.experienceCount
   } else if(section === "Projects"){
     return count?.projectsCount
@@ -60,6 +62,7 @@ export default function BodyForm() {
 
   let keys = {
     baseInfoCtrlKey: 0,
+    eduId: 0,
     empId: 0,
     projectId: 0,
     skillId: 0,
@@ -67,7 +70,8 @@ export default function BodyForm() {
     certId: 0,
     introInfoCtrlKey: 0,
     testInfoCtrlKey: 0,
-    blogInfoCtrlKey: 0
+    blogInfoCtrlKey: 0,
+    configKey: 0
   }
 
   useEffect(() => {
@@ -90,7 +94,7 @@ export default function BodyForm() {
         createSelfPayload(elements,actionTitle[1],notifyResponse);
       } else if(actionTitle[2] === 'dashboard'){
         createDashboardPayload(elements,actionTitle[1],notifyResponse);
-      } else if(actionTitle[2] === "css_config"){
+      } else if(actionTitle[2] === "config"){
         createCSSConfigPayload(elements,actionTitle[1],notifyResponse);
       } else {
         createSettingPayload(elements,actionTitle[1],notifyResponse);
@@ -100,7 +104,7 @@ export default function BodyForm() {
         readSelfPayload(elements,actionTitle[1],notifyResponse,dispatch);
       } else if(actionTitle[2] === 'dashboard'){
         readDashboardPayload(elements,actionTitle[1],notifyResponse,dispatch);
-      } else if(actionTitle[2] === "css_config"){
+      } else if(actionTitle[2] === "config"){
         readCSSConfigPayload(elements,actionTitle[1],notifyResponse,dispatch);
       } else {
         readSettingPayload(elements,actionTitle[1],notifyResponse,dispatch);
@@ -110,7 +114,7 @@ export default function BodyForm() {
         updateSelfPayload(elements,actionTitle[1],notifyResponse);
       } else if(actionTitle[2] === 'dashboard'){
         updateDashboardPayload(elements,actionTitle[1],notifyResponse);
-      } else if(actionTitle[2] === "css_config"){
+      } else if(actionTitle[2] === "config"){
         updateCSSConfigPayload(elements,actionTitle[1],notifyResponse);
       } else {
         updateSettingPayload(elements,actionTitle[1],notifyResponse);
@@ -120,7 +124,7 @@ export default function BodyForm() {
         deleteSelfPayload(elements,actionTitle[1],notifyResponse);
       } else if(actionTitle[2] === 'dashboard'){
         deleteDashboardPayload(elements,actionTitle[1],notifyResponse);
-      } else if(actionTitle[2] === "css_config"){
+      } else if(actionTitle[2] === "config"){
         deleteCssConfigPayload(elements,actionTitle[1],notifyResponse);
       } else {
         deleteSettingPayload(elements,actionTitle[1],notifyResponse);
@@ -130,7 +134,7 @@ export default function BodyForm() {
 
   const handleCancel = () => {
     if(actionTitle[0] && actionTitle[0] === "Read"){
-      dispatch(setClickedDataKey(0));
+      dispatch(setClickedDataKey(keys));
     }
   }
 
@@ -154,7 +158,7 @@ export default function BodyForm() {
       </div>
 
       {
-        (actionTitle[1] === "Experience" || actionTitle[1] === "Projects" || actionTitle[1] === "Achievements" 
+        (actionTitle[1] === "Education" || actionTitle[1] === "Experience" || actionTitle[1] === "Projects" || actionTitle[1] === "Achievements" 
         || actionTitle[1] === "Certifications") && actionTitle[0] === "Create"
         ?
           Array.apply(0, Array(form_count)).map(() => {

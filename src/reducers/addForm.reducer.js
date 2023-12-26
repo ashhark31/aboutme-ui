@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 export const addFormSlice = createSlice({
     name: 'addForm',
     initialState: {
+        educationCount: 1,
         experienceCount: 1,
         projectsCount: 1,
         skillsCount: {technical:1, behaivioral:1},
@@ -10,6 +11,9 @@ export const addFormSlice = createSlice({
         certificationsCount: 1
     },
     reducers: {
+        incrEduCount: (state) => {
+            state.educationCount += 1;
+        },
         incrExpCount: (state) => {
             state.experienceCount += 1;
         },
@@ -30,6 +34,13 @@ export const addFormSlice = createSlice({
             state.certificationsCount += 1;
         },
 
+        decrEduCount: (state) => {
+            if(state.educationCount === 2){
+                state.educationCount = 1;
+            } else{
+                state.educationCount -= 1;
+            }
+        },
         decrExpCount: (state) => {
             if(state.experienceCount === 2){
                 state.experienceCount = 1;
@@ -77,11 +88,13 @@ export const addFormSlice = createSlice({
 })
 
 export const { 
+    incrEduCount,
     incrExpCount,
     incrProjCount,
     incrSkillsCount,
     incrAchvmntCount,
     incrCrtCount,
+    decrEduCount,
     decrExpCount,
     decrProjCount,
     decrSkillsCount,

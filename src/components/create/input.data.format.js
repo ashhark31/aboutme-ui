@@ -90,6 +90,55 @@ export const selfBaseFormat = () => {
     )
 }
 
+export const selfEducationFormat = () => {
+    return (
+        [
+            {
+                name: "key",
+                label: "key",
+                inputType: "number",
+                inputValue: "30072022",
+                required: true
+            },
+            {
+                name: "degreeName",
+                label: "Degree Name",
+                inputType: "text",
+                inputValue: "Bachelors",
+                required: true
+            },
+            {
+                name: "fieldOfStudy",
+                label: "Field Of Study",
+                inputType: "text",
+                inputValue: "CSE",
+                required: true
+            },
+            {
+                name: "startDate",
+                label: "Start Date",
+                inputType: "date",
+                inputValue: "2023-07-03",
+                required: true
+            },
+            {
+                name: "endDate",
+                label: "End Date",
+                inputType: "date",
+                inputValue: "2023-07-03",
+                required: false
+            },
+            {
+                name: "currentlyPursuing",
+                label: "Currently Pursuing",
+                inputType: "checkbox",
+                inputValue: "",
+                required: false
+            }
+        ]
+    )
+}
+
 export const selfExperienceFormat = () => {
     return (
         [
@@ -408,4 +457,68 @@ export const dashBlogFormat = () => {
             required: false
         }
     ]
+}
+
+
+export const configKeyFormat = () => {
+    return (
+        [
+            {
+                name: "key",
+                label: "key",
+                inputType: "number",
+                inputValue: "1000001",
+                required: true
+            },
+            {
+                name: "baseInfoCtrlKey",
+                label: "Base Info Key",
+                inputType: "number",
+                inputValue: "27072000",
+                required: true
+            },
+            {
+                name: "eduId",
+                label: "Education ID",
+                inputType: "text",
+                inputValue: "30072022,30082022",
+                required: true
+            },
+            {
+                name: "empId",
+                label: "Experience Id",
+                inputType: "text",
+                inputValue: "512641,654565",
+                required: true
+            },
+            {
+                name: "projectId",
+                label: "Project Id",
+                inputType: "text",
+                inputValue: "121212",
+                required: true
+            },
+            {
+                name: "skillId",
+                label: "Skill Id",
+                inputType: "number",
+                inputValue: "323232",
+                required: true
+            },
+            {
+                name: "achvmntId",
+                label: "Achievement Id",
+                inputType: "text",
+                inputValue: "121212",
+                required: true
+            },
+            {
+                name: "certId",
+                label: "Certification Id",
+                inputType: "text",
+                inputValue: "454545",
+                required: true
+            }
+        ]
+    )
 }

@@ -1,5 +1,5 @@
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import { selfAchvmntFormat, selfBaseFormat, selfCrtFormat, selfExperienceFormat, selfProjectsFormat, selfSkillFormat } from "./input.data.format"
+import { selfAchvmntFormat, selfBaseFormat, selfCrtFormat, selfEducationFormat, selfExperienceFormat, selfProjectsFormat, selfSkillFormat } from "./input.data.format"
 import "../../styles/components.css"
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { 
   decrAchvmntCount,
   decrCrtCount,
+  decrEduCount,
   decrExpCount,
   decrProjCount,
   decrSkillsCount,
   incrAchvmntCount,
   incrCrtCount,
+  incrEduCount,
   incrExpCount, 
   incrProjCount,
   incrSkillsCount
@@ -116,6 +118,100 @@ export default function CreateBaseSelfInfo({type}) {
           );
         })
       }
+    </div>
+  )
+}
+
+export function CreateEducationSelfInfo({type}) {
+  const self_edu_data = selfEducationFormat();
+  const ref = useRef();
+  const dispatch = useDispatch();
+  const form_count = useSelector(state => state.addForm.educationCount);
+
+  return (
+    <div className="mt-10">
+      {
+        type === "Create"
+        ?
+          <div className="flex justify-end gap-x-2 cursor-pointer">
+            <span 
+              className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-sm font-medium text-green-700 ring-1"
+              onClick={() => dispatch(incrEduCount())}              
+            >
+              +
+            </span>
+            {
+              form_count > 1
+              ?
+                <span 
+                  className="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-sm font-medium text-yellow-800 ring-1"
+                  onClick={() => dispatch(decrEduCount())}              
+                >
+                  -
+                </span>
+              : <></>
+            }
+          </div>
+        : <></>
+      }
+      <div className="grid grid-cols-1 lg:gap-x-6 gap-y-8 lg:grid-cols-2">
+        {
+          self_edu_data?.map((edu) => {
+            return (
+                type === "Update" && edu?.name === "key"
+                ? <></>
+                :
+                  <div id={edu?.name}>
+                    <label htmlFor={edu?.name} className="block text-sm font-medium leading-6 text-gray-900">
+                      {edu?.label}
+                      { type === "Create" && edu?.required ? <i className="required">&emsp;*required</i> : ""}
+                    </label>
+                    <div className="mt-2">
+                      {
+                          edu?.inputType === "date"
+                          ? 
+                              <input
+                                type="text"
+                                ref={ref}
+                                name={edu?.name}
+                                placeholder={edu?.inputValue}
+                                onFocus={() => (ref.current.type = "date")}
+                                onBlur={() => (ref.current.type = "text")}
+                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                              />
+                          :
+                            type === "Create" && edu?.required
+                            ? 
+                              <input
+                                required
+                                name={edu?.name}     
+                                type={edu?.inputType}               
+                                placeholder={edu?.inputValue}
+                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                              />
+                            :
+                            edu?.inputType === "checkbox"
+                            ?
+                              <input
+                                name={edu?.name}     
+                                type={edu?.inputType}               
+                                placeholder={edu?.inputValue}                              
+                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                              />
+                            :
+                              <input
+                                name={edu?.name}     
+                                type={edu?.inputType}               
+                                placeholder={edu?.inputValue}                              
+                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                              />
+                      }
+                    </div>
+                  </div>
+            );
+          })
+        }
+      </div>
     </div>
   )
 }
