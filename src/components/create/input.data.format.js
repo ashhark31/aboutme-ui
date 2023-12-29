@@ -108,32 +108,25 @@ export const selfEducationFormat = () => {
                 required: true
             },
             {
-                name: "fieldOfStudy",
-                label: "Field Of Study",
+                name: "courseName",
+                label: "Course Name",
                 inputType: "text",
                 inputValue: "CSE",
                 required: true
             },
             {
-                name: "startDate",
-                label: "Start Date",
-                inputType: "date",
-                inputValue: "2023-07-03",
+                name: "university",
+                label: "University",
+                inputType: "text",
+                inputValue: "XYZ",
                 required: true
             },
             {
-                name: "endDate",
-                label: "End Date",
-                inputType: "date",
-                inputValue: "2023-07-03",
-                required: false
-            },
-            {
-                name: "currentlyPursuing",
-                label: "Currently Pursuing",
-                inputType: "checkbox",
-                inputValue: "",
-                required: false
+                name: "graduationYear",
+                label: "Graduation Year",
+                inputType: "text",
+                inputValue: "2018-2022",
+                required: true
             }
         ]
     )

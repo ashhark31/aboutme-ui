@@ -124,7 +124,6 @@ export default function CreateBaseSelfInfo({type}) {
 
 export function CreateEducationSelfInfo({type}) {
   const self_edu_data = selfEducationFormat();
-  const ref = useRef();
   const dispatch = useDispatch();
   const form_count = useSelector(state => state.addForm.educationCount);
 
@@ -168,43 +167,22 @@ export function CreateEducationSelfInfo({type}) {
                     </label>
                     <div className="mt-2">
                       {
-                          edu?.inputType === "date"
-                          ? 
-                              <input
-                                type="text"
-                                ref={ref}
-                                name={edu?.name}
-                                placeholder={edu?.inputValue}
-                                onFocus={() => (ref.current.type = "date")}
-                                onBlur={() => (ref.current.type = "text")}
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
-                          :
-                            type === "Create" && edu?.required
-                            ? 
-                              <input
-                                required
-                                name={edu?.name}     
-                                type={edu?.inputType}               
-                                placeholder={edu?.inputValue}
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
-                            :
-                            edu?.inputType === "checkbox"
-                            ?
-                              <input
-                                name={edu?.name}     
-                                type={edu?.inputType}               
-                                placeholder={edu?.inputValue}                              
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
-                            :
-                              <input
-                                name={edu?.name}     
-                                type={edu?.inputType}               
-                                placeholder={edu?.inputValue}                              
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
+                        type === "Create" && edu?.required
+                        ? 
+                          <input
+                            required
+                            name={edu?.name}     
+                            type={edu?.inputType}               
+                            placeholder={edu?.inputValue}
+                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          />
+                        :
+                          <input
+                            name={edu?.name}     
+                            type={edu?.inputType}               
+                            placeholder={edu?.inputValue}                              
+                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          />
                       }
                     </div>
                   </div>

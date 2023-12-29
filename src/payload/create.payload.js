@@ -32,17 +32,11 @@ export const createSelfPayload = async (target,actionType,callback) => {
     }  else if(actionType  === "Education"){
         let eduInfoCtrlDetails = [];
         let objectDetails = {};
-        let split = 6;
+        let split = 5;
         for(let i=0; i<target.length; i++){
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 objectDetails[key] = Number(target.elements[i].value);
-            } else if(key === "currentlyPursuing"){
-                if(target.elements[i].checked){
-                    objectDetails[key] = true;
-                } else {
-                    objectDetails[key] = false;
-                }
             } else if(target.elements[i].value !== "") {
                 objectDetails[key] = target.elements[i].value;
             }           
@@ -50,7 +44,7 @@ export const createSelfPayload = async (target,actionType,callback) => {
             if(i === split-1){
                 eduInfoCtrlDetails.push(objectDetails);
                 objectDetails = {};
-                split += 6;
+                split += 5;
             }
         }
         

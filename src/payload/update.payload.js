@@ -38,10 +38,6 @@ export const updateSelfPayload = async (target,actionType,callback) => {
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 eduInfoCtrlKey = target.elements[i].value;
-            } else if(key === "currentlyPursuing"){
-                if(target.elements[i].checked === "on"){
-                    eduInfoCtrlDetails[key] = true;
-                }
             } else if(target.elements[i].value !== ""){
                 eduInfoCtrlDetails[key] = target.elements[i].value;
             }
