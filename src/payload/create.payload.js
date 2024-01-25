@@ -32,19 +32,21 @@ export const createSelfPayload = async (target,actionType,callback) => {
     }  else if(actionType  === "Education"){
         let eduInfoCtrlDetails = [];
         let objectDetails = {};
-        let split = 5;
         for(let i=0; i<target.length; i++){
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 objectDetails[key] = Number(target.elements[i].value);
+            } else if(key === "universityProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                objectDetails[key] = base64;
             } else if(target.elements[i].value !== "") {
                 objectDetails[key] = target.elements[i].value;
             }           
 
-            if(i === split-1){
+            if(target.elements[i].getAttribute("name") === "graduationYear"){
                 eduInfoCtrlDetails.push(objectDetails);
                 objectDetails = {};
-                split += 5;
             }
         }
         
@@ -53,7 +55,6 @@ export const createSelfPayload = async (target,actionType,callback) => {
     } else if(actionType  === "Experience"){
         let expInfoCtrlDetails = [];
         let objectDetails = {};
-        let split = 7;
         for(let i=0; i<target.length; i++){
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
@@ -64,38 +65,44 @@ export const createSelfPayload = async (target,actionType,callback) => {
                 } else {
                     objectDetails[key] = false;
                 }
+            } else if(key === "companyProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                objectDetails[key] = base64;
             } else if(target.elements[i].value !== "") {
                 objectDetails[key] = target.elements[i].value;
             }           
 
-            if(i === split-1){
+            if(target.elements[i].getAttribute("name") === "description"){
                 expInfoCtrlDetails.push(objectDetails);
                 objectDetails = {};
-                split += 7;
             }
         }
+
         createExpInfoDetails(expInfoCtrlDetails,callback);
     } else if(actionType === "Projects"){
         let projInfoCtrlDetails = [];
         let objectDetails = {};
-        let split = 5;
         for(let i=0; i<target.length; i++){
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 objectDetails[key] = Number(target.elements[i].value);
             } else if(key === "techUsed"){
                 objectDetails[key] = target.elements[i].value.split(",");
+            } else if(key === "projectImgCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                objectDetails[key] = base64;
             } else if(target.elements[i].value !== "") {
                 objectDetails[key] = target.elements[i].value;
             }           
 
-            if(i === split-1){
+            if(target.elements[i].getAttribute("name") === "description"){
                 projInfoCtrlDetails.push(objectDetails);
                 objectDetails = {};
-                split += 5;
             }
         }
-
+        
         createProjInfoDetails(projInfoCtrlDetails,callback);
     } else if(actionType === "Skills"){
         let skillInfoCtrlDetails = {};
@@ -150,19 +157,21 @@ export const createSelfPayload = async (target,actionType,callback) => {
     } else if(actionType === "Achievements"){
         let achvmntInfoCtrlDetails = [];
         let objectDetails = {};
-        let split = 4;
         for(let i=0; i<target.length; i++){
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 objectDetails[key] = Number(target.elements[i].value);
+            } else if(key === "achvmntProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                objectDetails[key] = base64;
             } else if(target.elements[i].value !== "") {
                 objectDetails[key] = target.elements[i].value;
             }           
 
-            if(i === split-1){
+            if(target.elements[i].getAttribute("name") === "description"){
                 achvmntInfoCtrlDetails.push(objectDetails);
                 objectDetails = {};
-                split += 4;
             }
         }
         
@@ -170,19 +179,21 @@ export const createSelfPayload = async (target,actionType,callback) => {
     } else {
         let crtInfoCtrlDetails = [];
         let objectDetails = {};
-        let split = 4;
         for(let i=0; i<target.length; i++){
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 objectDetails[key] = Number(target.elements[i].value);
+            } else if(key === "crtProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                objectDetails[key] = base64;
             } else if(target.elements[i].value !== "") {
                 objectDetails[key] = target.elements[i].value;
             }           
 
-            if(i === split-1){
+            if(target.elements[i].getAttribute("name") === "description"){
                 crtInfoCtrlDetails.push(objectDetails);
                 objectDetails = {};
-                split += 4;
             }
         }
         

@@ -49,12 +49,12 @@ const ReadBaseSelfInfo = ({readData}) => {
                             }
                             
                             <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">
-                                {data?.["userFirstName"] + " " + data?.["userLastName"]}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {data?.['userEmailInfo']}
-                            </p>
+                                <p className="text-sm font-semibold leading-6 text-gray-900">
+                                    {data?.["userFirstName"] + " " + data?.["userLastName"]}
+                                </p>
+                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                    {data?.['userEmailInfo']}
+                                </p>
                             </div>
                         </div>
                         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -89,13 +89,24 @@ const ReadEduSelfInfo = ({readData}) => {
                         className="cursor-pointer flex justify-between gap-x-6 py-5"
                     >
                         <div className="flex min-w-0 gap-x-4">
+                            {
+                                data?.["universityProfileCtrl"]
+                                ?
+                                    <img 
+                                        className="h-12 w-12 flex-none rounded-full bg-gray-50" 
+                                        src={data?.["universityProfileCtrl"]} 
+                                        alt=""
+                                    />
+                                :
+                                    <Avatar>NaN</Avatar>
+                            }
                             <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">
-                                {data?.["key"]}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {data?.['degreeName']}
-                            </p>
+                                <p className="text-sm font-semibold leading-6 text-gray-900">
+                                    {data?.["key"]}
+                                </p>
+                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                    {data?.['degreeName']}
+                                </p>
                             </div>
                         </div>
                         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -130,13 +141,24 @@ const ReadExpSelfInfo = ({readData}) => {
                         className="cursor-pointer flex justify-between gap-x-6 py-5"
                     >
                         <div className="flex min-w-0 gap-x-4">
+                            {
+                                data?.["companyProfileCtrl"]
+                                ?
+                                    <img 
+                                        className="h-12 w-12 flex-none rounded-full bg-gray-50" 
+                                        src={data?.["companyProfileCtrl"]} 
+                                        alt=""
+                                    />
+                                :
+                                    <Avatar>NaN</Avatar>
+                            }
                             <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">
-                                {data?.["key"]}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {data?.['position']}
-                            </p>
+                                <p className="text-sm font-semibold leading-6 text-gray-900">
+                                    {data?.["key"]}
+                                </p>
+                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                    {data?.['position']}
+                                </p>
                             </div>
                         </div>
                         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -171,13 +193,24 @@ const ReadProjSelfInfo = ({readData}) => {
                         className="cursor-pointer flex justify-between gap-x-6 py-5"
                     >
                         <div className="flex min-w-0 gap-x-4">
+                            {
+                                data?.["projectImgCtrl"]
+                                ?
+                                    <img 
+                                        className="h-12 w-12 flex-none rounded-full bg-gray-50" 
+                                        src={data?.["projectImgCtrl"]} 
+                                        alt=""
+                                    />
+                                :
+                                    <Avatar>NaN</Avatar>
+                            }
                             <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">
-                                {data?.["key"]}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {data?.['projectTitle']}
-                            </p>
+                                <p className="text-sm font-semibold leading-6 text-gray-900">
+                                    {data?.["key"]}
+                                </p>
+                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                    {data?.['projectTitle']}
+                                </p>
                             </div>
                         </div>
                         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -247,13 +280,24 @@ const ReadAchvmntSelfInfo = ({readData}) => {
                         className="cursor-pointer flex justify-between gap-x-6 py-5"
                     >
                         <div className="flex min-w-0 gap-x-4">
+                            {
+                                data?.["achvmntProfileCtrl"]
+                                ?
+                                    <img 
+                                        className="h-12 w-12 flex-none rounded-full bg-gray-50" 
+                                        src={data?.["achvmntProfileCtrl"]} 
+                                        alt=""
+                                    />
+                                :
+                                    <Avatar>NaN</Avatar>
+                            }
                             <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">
-                                {data?.["key"]}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {data?.['achvmntTitle']}
-                            </p>
+                                <p className="text-sm font-semibold leading-6 text-gray-900">
+                                    {data?.["key"]}
+                                </p>
+                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                    {data?.['achvmntTitle']}
+                                </p>
                             </div>
                         </div>
                         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -288,19 +332,27 @@ const ReadCrtSelfInfo = ({readData}) => {
                         className="cursor-pointer flex justify-between gap-x-6 py-5"
                     >
                         <div className="flex min-w-0 gap-x-4">
+                            {
+                                data?.["crtProfileCtrl"]
+                                ?
+                                    <img 
+                                        className="h-12 w-12 flex-none rounded-full bg-gray-50" 
+                                        src={data?.["crtProfileCtrl"]} 
+                                        alt=""
+                                    />
+                                :
+                                    <Avatar>NaN</Avatar>
+                            }
                             <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">
-                                {data?.["key"]}
-                            </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {data?.['certName']}
-                            </p>
+                                <p className="text-sm font-semibold leading-6 text-gray-900">
+                                    {data?.["key"]}
+                                </p>
+                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                    {data?.['certName']}
+                                </p>
                             </div>
                         </div>
                         <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                            <p className="text-sm leading-6 text-gray-900">
-                                {data?.["url"] ? data?.["url"] : "No URL Found"}
-                            </p>
                             <p className="mt-1 text-xs leading-5 text-gray-500">
                                 created at {data?.["createdAt"]}
                             </p>

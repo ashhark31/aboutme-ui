@@ -157,35 +157,38 @@ export function CreateEducationSelfInfo({type}) {
         {
           self_edu_data?.map((edu) => {
             return (
-                type === "Update" && edu?.name === "key"
-                ? <></>
+                edu?.inputType === "file" 
+                ? <ProfilePic base={edu} key={edu?.name} />
                 :
-                  <div id={edu?.name}>
-                    <label htmlFor={edu?.name} className="block text-sm font-medium leading-6 text-gray-900">
-                      {edu?.label}
-                      { type === "Create" && edu?.required ? <i className="required">&emsp;*required</i> : ""}
-                    </label>
-                    <div className="mt-2">
-                      {
-                        type === "Create" && edu?.required
-                        ? 
-                          <input
-                            required
-                            name={edu?.name}     
-                            type={edu?.inputType}               
-                            placeholder={edu?.inputValue}
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          />
-                        :
-                          <input
-                            name={edu?.name}     
-                            type={edu?.inputType}               
-                            placeholder={edu?.inputValue}                              
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          />
-                      }
+                  type === "Update" && edu?.name === "key"
+                  ? <></>
+                  :
+                    <div id={edu?.name}>
+                      <label htmlFor={edu?.name} className="block text-sm font-medium leading-6 text-gray-900">
+                        {edu?.label}
+                        { type === "Create" && edu?.required ? <i className="required">&emsp;*required</i> : ""}
+                      </label>
+                      <div className="mt-2">
+                        {
+                          type === "Create" && edu?.required
+                          ? 
+                            <input
+                              required
+                              name={edu?.name}     
+                              type={edu?.inputType}               
+                              placeholder={edu?.inputValue}
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                          :
+                            <input
+                              name={edu?.name}     
+                              type={edu?.inputType}               
+                              placeholder={edu?.inputValue}                              
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        }
+                      </div>
                     </div>
-                  </div>
             );
           })
         }
@@ -230,63 +233,66 @@ export function CreateExperienceSelfInfo({type}) {
         {
           self_exp_data?.map((exp) => {
             return (
-                type === "Update" && exp?.name === "key"
-                ? <></>
+                exp?.inputType === "file" 
+                ? <ProfilePic base={exp} key={exp?.name} />
                 :
-                  <div id={exp?.name}>
-                    <label htmlFor={exp?.name} className="block text-sm font-medium leading-6 text-gray-900">
-                      {exp?.label}
-                      { type === "Create" && exp?.required ? <i className="required">&emsp;*required</i> : ""}
-                    </label>
-                    <div className="mt-2">
-                      {
-                          exp?.inputType === "date"
-                          ? 
-                              <input
-                                type="text"
-                                ref={ref}
-                                name={exp?.name}
-                                placeholder={exp?.inputValue}
-                                onFocus={() => (ref.current.type = "date")}
-                                onBlur={() => (ref.current.type = "text")}
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
-                          :
-                          exp?.name === "description"
-                          ?
-                            <TextArea
-                              name={exp?.name}              
-                              placeholder={exp?.inputValue} 
-                            />
-                          :
-                            type === "Create" && exp?.required
+                  type === "Update" && exp?.name === "key"
+                  ? <></>
+                  :
+                    <div id={exp?.name}>
+                      <label htmlFor={exp?.name} className="block text-sm font-medium leading-6 text-gray-900">
+                        {exp?.label}
+                        { type === "Create" && exp?.required ? <i className="required">&emsp;*required</i> : ""}
+                      </label>
+                      <div className="mt-2">
+                        {
+                            exp?.inputType === "date"
                             ? 
-                              <input
-                                required
-                                name={exp?.name}     
-                                type={exp?.inputType}               
-                                placeholder={exp?.inputValue}
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
+                                <input
+                                  type="text"
+                                  ref={ref}
+                                  name={exp?.name}
+                                  placeholder={exp?.inputValue}
+                                  onFocus={() => (ref.current.type = "date")}
+                                  onBlur={() => (ref.current.type = "text")}
+                                  className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
                             :
-                            exp?.inputType === "checkbox"
+                            exp?.name === "description"
                             ?
-                              <input
-                                name={exp?.name}     
-                                type={exp?.inputType}               
-                                placeholder={exp?.inputValue}                              
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                              <TextArea
+                                name={exp?.name}              
+                                placeholder={exp?.inputValue} 
                               />
                             :
-                              <input
-                                name={exp?.name}     
-                                type={exp?.inputType}               
-                                placeholder={exp?.inputValue}                              
-                                className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
-                      }
+                              type === "Create" && exp?.required
+                              ? 
+                                <input
+                                  required
+                                  name={exp?.name}     
+                                  type={exp?.inputType}               
+                                  placeholder={exp?.inputValue}
+                                  className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                              :
+                              exp?.inputType === "checkbox"
+                              ?
+                                <input
+                                  name={exp?.name}     
+                                  type={exp?.inputType}               
+                                  placeholder={exp?.inputValue}                              
+                                  className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                              :
+                                <input
+                                  name={exp?.name}     
+                                  type={exp?.inputType}               
+                                  placeholder={exp?.inputValue}                              
+                                  className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                        }
+                      </div>
                     </div>
-                  </div>
             );
           })
         }
@@ -330,42 +336,45 @@ export function CreateProjectsSelfInfo({type}) {
         {
           self_proj_data?.map((proj) => {
             return (
-              type === "Update" && proj?.name === "key"
-              ? <></>
+              proj?.inputType === "file" 
+              ? <ProfilePic base={proj} key={proj?.name} />
               :
-                <div id={proj?.name}>
-                  <label htmlFor={proj?.name} className="block text-sm font-medium leading-6 text-gray-900">
-                    {proj?.label}
-                    { type === "Create" && proj?.required ? <i className="required">&emsp;*required</i> : ""}
-                  </label>
-                  <div className="mt-2">
-                    {
-                      proj?.name === "description"
-                      ?
-                        <TextArea
-                          name={proj?.name}              
-                          placeholder={proj?.inputValue} 
-                        />
-                      :
-                        type === "Create" && proj?.required
-                        ? 
-                          <input
-                            required
-                            name={proj?.name}     
-                            type={proj?.inputType}               
-                            placeholder={proj?.inputValue}
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                type === "Update" && proj?.name === "key"
+                ? <></>
+                :
+                  <div id={proj?.name}>
+                    <label htmlFor={proj?.name} className="block text-sm font-medium leading-6 text-gray-900">
+                      {proj?.label}
+                      { type === "Create" && proj?.required ? <i className="required">&emsp;*required</i> : ""}
+                    </label>
+                    <div className="mt-2">
+                      {
+                        proj?.name === "description"
+                        ?
+                          <TextArea
+                            name={proj?.name}              
+                            placeholder={proj?.inputValue} 
                           />
                         :
-                          <input
-                            name={proj?.name}     
-                            type={proj?.inputType}               
-                            placeholder={proj?.inputValue}                              
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          />
-                    }
+                          type === "Create" && proj?.required
+                          ? 
+                            <input
+                              required
+                              name={proj?.name}     
+                              type={proj?.inputType}               
+                              placeholder={proj?.inputValue}
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                          :
+                            <input
+                              name={proj?.name}     
+                              type={proj?.inputType}               
+                              placeholder={proj?.inputValue}                              
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                      }
+                    </div>
                   </div>
-                </div>
             );
           })
         }
@@ -557,42 +566,45 @@ export function CreateAchvmntsSelfInfo({type}) {
         {
           self_achvmnt_data?.map((achvmnt) => {
             return (
-              type === "Update" && achvmnt?.name === "key"
-              ? <></>
+              achvmnt?.inputType === "file" 
+              ? <ProfilePic base={achvmnt} key={achvmnt?.name} />
               :
-                <div id={achvmnt?.name}>
-                  <label htmlFor={achvmnt?.name} className="block text-sm font-medium leading-6 text-gray-900">
-                    {achvmnt?.label}
-                    { type === "Create" && achvmnt?.required ? <i className="required">&emsp;*required</i> : ""}
-                  </label>
-                  <div className="mt-2">
-                    {
-                      achvmnt?.name === "description"
-                      ?
-                        <TextArea
-                          name={achvmnt?.name}              
-                          placeholder={achvmnt?.inputValue} 
-                        />
-                      :
-                        type === "Create" && achvmnt?.required
-                        ? 
-                          <input
-                            required
-                            name={achvmnt?.name}     
-                            type={achvmnt?.inputType}               
-                            placeholder={achvmnt?.inputValue}
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                type === "Update" && achvmnt?.name === "key"
+                ? <></>
+                :
+                  <div id={achvmnt?.name}>
+                    <label htmlFor={achvmnt?.name} className="block text-sm font-medium leading-6 text-gray-900">
+                      {achvmnt?.label}
+                      { type === "Create" && achvmnt?.required ? <i className="required">&emsp;*required</i> : ""}
+                    </label>
+                    <div className="mt-2">
+                      {
+                        achvmnt?.name === "description"
+                        ?
+                          <TextArea
+                            name={achvmnt?.name}              
+                            placeholder={achvmnt?.inputValue} 
                           />
                         :
-                          <input
-                            name={achvmnt?.name}     
-                            type={achvmnt?.inputType}               
-                            placeholder={achvmnt?.inputValue}                              
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          />
-                    }
+                          type === "Create" && achvmnt?.required
+                          ? 
+                            <input
+                              required
+                              name={achvmnt?.name}     
+                              type={achvmnt?.inputType}               
+                              placeholder={achvmnt?.inputValue}
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                          :
+                            <input
+                              name={achvmnt?.name}     
+                              type={achvmnt?.inputType}               
+                              placeholder={achvmnt?.inputValue}                              
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                      }
+                    </div>
                   </div>
-                </div>
             );
           })
         }
@@ -636,42 +648,45 @@ export function CreateCrtSelfInfo({type}) {
         {
           self_crt_data?.map((crt) => {
             return (
-              type === "Update" && crt?.name === "key"
-              ? <></>
+              crt?.inputType === "file" 
+              ? <ProfilePic base={crt} key={crt?.name} />
               :
-                <div id={crt?.name}>
-                  <label htmlFor={crt?.name} className="block text-sm font-medium leading-6 text-gray-900">
-                    {crt?.label}
-                    { type === "Create" && crt?.required ? <i className="required">&emsp;*required</i> : ""}
-                  </label>
-                  <div className="mt-2">
-                    {
-                      crt?.name === "description"
-                      ?
-                        <TextArea
-                          name={crt?.name}              
-                          placeholder={crt?.inputValue} 
-                        />
-                      :
-                        type === "Create" && crt?.required
-                        ? 
-                          <input
-                            required
-                            name={crt?.name}     
-                            type={crt?.inputType}               
-                            placeholder={crt?.inputValue}
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                type === "Update" && crt?.name === "key"
+                ? <></>
+                :
+                  <div id={crt?.name}>
+                    <label htmlFor={crt?.name} className="block text-sm font-medium leading-6 text-gray-900">
+                      {crt?.label}
+                      { type === "Create" && crt?.required ? <i className="required">&emsp;*required</i> : ""}
+                    </label>
+                    <div className="mt-2">
+                      {
+                        crt?.name === "description"
+                        ?
+                          <TextArea
+                            name={crt?.name}              
+                            placeholder={crt?.inputValue} 
                           />
                         :
-                          <input
-                            name={crt?.name}     
-                            type={crt?.inputType}               
-                            placeholder={crt?.inputValue}                              
-                            className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          />
-                    }
+                          type === "Create" && crt?.required
+                          ? 
+                            <input
+                              required
+                              name={crt?.name}     
+                              type={crt?.inputType}               
+                              placeholder={crt?.inputValue}
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                          :
+                            <input
+                              name={crt?.name}     
+                              type={crt?.inputType}               
+                              placeholder={crt?.inputValue}                              
+                              className="block w-full rounded-md border-0 p-[10px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                      }
+                    </div>
                   </div>
-                </div>
             );
           })
         }

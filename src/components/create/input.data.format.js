@@ -94,6 +94,13 @@ export const selfEducationFormat = () => {
     return (
         [
             {
+                name: "universityProfileCtrl",
+                label: "University Profile",
+                inputType: "file",
+                inputValue: "profile",
+                required: false
+            },
+            {
                 name: "key",
                 label: "key",
                 inputType: "number",
@@ -135,6 +142,13 @@ export const selfEducationFormat = () => {
 export const selfExperienceFormat = () => {
     return (
         [
+            {
+                name: "companyProfileCtrl",
+                label: "Company Profile",
+                inputType: "file",
+                inputValue: "profile",
+                required: false
+            },
             {
                 name: "key",
                 label: "key",
@@ -191,6 +205,13 @@ export const selfExperienceFormat = () => {
 export const selfProjectsFormat = () => {
     return (
         [
+            {
+                name: "projectImgCtrl",
+                label: "Project Image",
+                inputType: "file",
+                inputValue: "profile",
+                required: false
+            },
             {
                 name: "key",
                 label: "key",
@@ -294,6 +315,13 @@ export const selfAchvmntFormat = () => {
     return (
         [
             {
+                name: "achvmntProfileCtrl",
+                label: "Achievement Image",
+                inputType: "file",
+                inputValue: "profile",
+                required: false
+            },
+            {
                 name: "key",
                 label: "key",
                 inputType: "number",
@@ -328,6 +356,13 @@ export const selfAchvmntFormat = () => {
 export const selfCrtFormat = () => {
     return (
         [
+            {
+                name: "crtProfileCtrl",
+                label: "Certification Image",
+                inputType: "file",
+                inputValue: "profile",
+                required: false
+            },
             {
                 name: "key",
                 label: "key",

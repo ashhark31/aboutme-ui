@@ -48,6 +48,15 @@ export default function DescriptionList ({ctrlKey}) {
       return data;
   })
 
+  let profileCtrl = '';
+  if(data?.baseProfileCtrl) profileCtrl = data?.baseProfileCtrl;
+  else if(data?.universityProfileCtrl) profileCtrl = data?.universityProfileCtrl;
+  else if(data?.companyProfileCtrl) profileCtrl = data?.companyProfileCtrl;
+  else if(data?.projectImgCtrl) profileCtrl = data?.projectImgCtrl;
+  else if(data?.achvmntProfileCtrl)profileCtrl = data?.achvmntProfileCtrl;
+  else if(data?.crtProfileCtrl) profileCtrl = data?.crtProfileCtrl;
+  else if(data?.userProfile) profileCtrl = data?.userProfile;
+
   return (
     ctrlKey === data?.key
       ?
@@ -59,42 +68,38 @@ export default function DescriptionList ({ctrlKey}) {
         <div className="mt-6 border-t border-gray-100">
           <dl className="divide-y divide-gray-100">
             {
-              section === "Base" || section === "Testimonials" || section === "Blog"
+              profileCtrl !== ''
               ?
-                (section === "Base" && data?.baseProfileCtrl) || (section === "Testimonials" && data?.userProfile)
-                ?
-                  <div key={data?.key} className="flex justify-center -space-x-1 overflow-hidden">
-                    <img
-                      className="inline-block h-20 w-20 rounded-full ring-2 ring-white"
-                      src={
-                        data?.baseProfileCtrl ? data?.baseProfileCtrl : data?.userProfile
-                      }
-                      alt=""
-                    />
-                  </div>
-                :
-                (section === "Base" && !data?.baseProfileCtrl) || (section === "Testimonials" && !data?.userProfile)
-                ?
-                  <div key={data?.key} className="flex justify-center -space-x-1 overflow-hidden">
-                    {
-                      !data?.baseProfileCtrl
-                      ?
-                        <Avatar>
-                          {data?.["userFirstName"]?.charAt(0)?.toUpperCase() + data?.["userLastName"]?.charAt(0)?.toUpperCase()}
-                        </Avatar>
-                      :
-                        <Avatar>
-                          {data?.["userName"]?.charAt(0)?.toUpperCase() + data?.["userName"]?.charAt(1)?.toUpperCase()}
-                        </Avatar>
-                    }                    
-                  </div>
-                : <></>
-              : <></>              
+                <div key={data?.key} className="flex justify-center -space-x-1 overflow-hidden">
+                  <img
+                    className="inline-block h-20 w-20 rounded-full ring-2 ring-white"
+                    src={profileCtrl}
+                    alt=""
+                  />
+                </div>
+              :
+              (section === "Base" && !data?.baseProfileCtrl) || (section === "Testimonials" && !data?.userProfile)
+              ?
+                <div key={data?.key} className="flex justify-center -space-x-1 overflow-hidden">
+                  {
+                    !data?.baseProfileCtrl
+                    ?
+                      <Avatar>
+                        {data?.["userFirstName"]?.charAt(0)?.toUpperCase() + data?.["userLastName"]?.charAt(0)?.toUpperCase()}
+                      </Avatar>
+                    :
+                      <Avatar>
+                        {data?.["userName"]?.charAt(0)?.toUpperCase() + data?.["userName"]?.charAt(1)?.toUpperCase()}
+                      </Avatar>
+                  }                    
+                </div>
+              : <></>
             }
             {
               Object.entries(data).map(([key,value]) => {
                 return (
-                  key !== "baseProfileCtrl"
+                  key !== "baseProfileCtrl" && key !== "universityProfileCtrl" && key !== "companyProfileCtrl" &&
+                  key !== "projectImgCtrl" && key !== "achvmntProfileCtrl" && key !== "crtProfileCtrl"
                   ?
                     <div key={key} className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                       <dt className="text-sm font-medium leading-6 text-gray-900">{key}</dt>

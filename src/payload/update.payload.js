@@ -38,6 +38,10 @@ export const updateSelfPayload = async (target,actionType,callback) => {
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 eduInfoCtrlKey = target.elements[i].value;
+            } else if(key === "universityProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                eduInfoCtrlDetails[key] = base64;
             } else if(target.elements[i].value !== ""){
                 eduInfoCtrlDetails[key] = target.elements[i].value;
             }
@@ -52,6 +56,10 @@ export const updateSelfPayload = async (target,actionType,callback) => {
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 expInfoCtrlKey = target.elements[i].value;
+            } else if(key === "companyProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                expInfoCtrlDetails[key] = base64;
             } else if(key === "currentlyWorking"){
                 if(target.elements[i].checked === "on"){
                     expInfoCtrlDetails[key] = true;
@@ -72,6 +80,10 @@ export const updateSelfPayload = async (target,actionType,callback) => {
                 projInfoCtrlKey = target.elements[i].value;
             } else if(key === "techUsed" && target.elements[i].value){
                 projInfoCtrlDetails[key] = target.elements[i].value.split(",");
+            } else if(key === "projectImgCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                projInfoCtrlDetails[key] = base64;
             } else if(target.elements[i].value !== ""){
                 projInfoCtrlDetails[key] = target.elements[i].value;
             }
@@ -135,6 +147,10 @@ export const updateSelfPayload = async (target,actionType,callback) => {
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 achvmntInfoCtrlKey = target.elements[i].value;
+            } else if(key === "achvmntProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                achvmntInfoCtrlDetails[key] = base64;
             } else if(target.elements[i].value !== ""){
                 achvmntInfoCtrlDetails[key] = target.elements[i].value;
             }
@@ -148,6 +164,10 @@ export const updateSelfPayload = async (target,actionType,callback) => {
             let key = target.elements[i].getAttribute("name");
             if(key === "key"){
                 crtInfoCtrlKey = target.elements[i].value;
+            } else if(key === "crtProfileCtrl" && target.elements[i].files[0]){
+                const file = target.elements[i].files[0];
+                const base64 = await readFileDataAsBase64(file);
+                crtInfoCtrlDetails[key] = base64;
             } else if(target.elements[i].value !== ""){
                 crtInfoCtrlDetails[key] = target.elements[i].value;
             }
